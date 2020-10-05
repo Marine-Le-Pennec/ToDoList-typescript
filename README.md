@@ -11,7 +11,7 @@ A simple project made with React and try to incorporate some TS code (learn alon
 
 
 
-
+![](https://media.giphy.com/media/EztdkHMajdjsCwyP7R/giphy.gif)
 
 ### Run and see the project
 
