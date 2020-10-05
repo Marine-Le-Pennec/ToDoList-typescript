@@ -2,37 +2,83 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.title {
+  position: fixed;
+  left: 43%;
+  z-index: 2;
+  font-size: 50px;
+  color: #2e3d40;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.main-container {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+.task-container {
+  width: 70%;
+  /* height: 200px; */
+  border-radius: 20px;
+  background-color: #cfeff9;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.task-container h2 {
+  color: #2e3d40;
+}
+.input-container {
+  width: 100%;
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  margin-top: 30px;
+}
+.input {
+  border: solid 3px #335b64;
+  width: 40%;
+  height: 50px;
+  border-radius: 10px;
+  font-size: 27px;
+  color: #324f56;
+  background-color: #cfeff9;
+  margin-right: 10px;
 }
 
-.App-link {
-  color: #61dafb;
+.input-container button {
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+  border: 3px solid #335b64;
+  background-color: transparent;
+  transition-duration: 0.4s;
 }
 
-@keyframes App-logo-spin {
+.plus:hover {
+  animation-name: spin;
+  animation-duration: 2000ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+@keyframes spin {
   from {
     transform: rotate(0deg);
   }
   to {
     transform: rotate(360deg);
   }
+}
+
+.task-section {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+}
+.trash-button {
+  border-style: none;
+  background-color: transparent;
+}
+
+.task-title {
+  font-size: 27px;
+  margin-right: 6em;
 }

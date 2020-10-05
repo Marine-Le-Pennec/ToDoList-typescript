@@ -1,26 +1,101 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {useState } from "react";
+import "./App.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-function App() {
+// Components
+import Header from "./components/Header";
+import Task from "./components/Task";
+
+// Icones
+
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faPlus, faTrash } from "@fortawesome/free-solid-svg-icons";
+
+library.add(faPlus, faTrash);
+
+const App: React.FC = () => {
+
+  // States Interfaces
+  interface Iinput {
+    input: string;
+  }
+
+  interface ITask {
+    title: string;
+    done: boolean; 
+  }
+
+
+
+  // States
+
+  // State permettant de stocker texte input
+  const [input, setInput] = useState("");
+
+  // State permettant de stocker les tâches
+  const [task, setTask] = useState<any>([]);
+
+  // Fonction de submit
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    if (!input) {
+      alert("Veuillez entrer une nouvelle tâche");
+    } else {
+      let newTask: Array<ITask> = [...task];
+      let taskObj = {} as ITask;
+      taskObj.title = input;
+      taskObj.done = false;
+      newTask.push(taskObj);
+      setTask(newTask);
+    }
+  };
+
+  
+  
+   // fonction appelée lorsque l'on clique sur la poubelle
+   const handleClickTrash = (index:number):any => {
+    // il faut supprimer l'élément cliqué du tableau "tasks"
+    let tasksCopy : Array<ITask>=[...task];
+    tasksCopy.splice(tasksCopy.indexOf(tasksCopy[index]), 1);
+    setTask(tasksCopy);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <div>
+        <Header />
+      </div>
+      <div className="main-container">
+        <div   className="task-container">
+          <h2>TO DO</h2>
+          <div className="task-section">
+            
+          <Task task={task} handleClickTrash={handleClickTrash}/>
+          
+          </div>
+        </div>
+        <form className="input-container" onSubmit={(e) => handleSubmit(e)}>
+          <input
+            name="input-task"
+            placeholder="Ajouter une nouvelle tâche..."
+            className="input"
+            onChange={(event) => {
+              setInput(event.target.value);
+            }}
+          ></input>
+          <button type="submit">
+            <FontAwesomeIcon
+              icon={"plus"}
+              size={"3x"}
+              color={"#2D7B8D"}
+              className="plus"
+            />
+          </button>
+        </form>
+      </div>
+    </>
   );
-}
+};
 
 export default App;
