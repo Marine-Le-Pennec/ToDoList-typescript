@@ -9,9 +9,10 @@ interface Props {
   task:ITask[];
   setTask?:ITask;
   handleClickTrash:any;
+  handleCheck:any
 }
 
-const Task: React.FC<Props> = ({task,handleClickTrash}) => {
+const Task: React.FC<Props> = ({task,handleClickTrash,handleCheck}) => {
   
   
   
@@ -20,16 +21,23 @@ const Task: React.FC<Props> = ({task,handleClickTrash}) => {
       {
         task.map((elem:any, index:number) => {
         
-          console.log("elem=",elem.title);
+         
           return (
-            <div key={index}>
-             <span key={index}>{elem.title}</span>
-             <FontAwesomeIcon
-              onClick={() => handleClickTrash(index)}
-                className="trash"
-                icon="trash"
-                size="2x"
-              />
+            <div key={index} className="task-line">
+             <input className="checkbox" type="checkbox" onClick={()=>handleCheck(index)}/>
+           <span className={elem.done===false?"":"task-underline"} key={index}>{elem.title}</span>
+             
+              <button className="trash-button"><FontAwesomeIcon
+                onClick={() => handleClickTrash(index)}
+                  
+                  icon="trash"
+                  size="lg"
+                  color="#ef680e"
+                  
+                /></button>
+               
+              
+            
             </div>
           )
         })}

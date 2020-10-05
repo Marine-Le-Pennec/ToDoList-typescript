@@ -51,8 +51,6 @@ const App: React.FC = () => {
     }
   };
 
-  
-  
    // fonction appelée lorsque l'on clique sur la poubelle
    const handleClickTrash = (index:number):any => {
     // il faut supprimer l'élément cliqué du tableau "tasks"
@@ -60,6 +58,13 @@ const App: React.FC = () => {
     tasksCopy.splice(tasksCopy.indexOf(tasksCopy[index]), 1);
     setTask(tasksCopy);
   };
+
+  // fonction appelé lorsque l'on clique sur la checkbox
+  const handleCheck = (index:number):any=>{
+    let tasksCopy : Array<ITask>=[...task];
+    tasksCopy[index].done=!tasksCopy[index].done
+    setTask(tasksCopy);
+  }
 
   return (
     <>
@@ -71,7 +76,7 @@ const App: React.FC = () => {
           <h2>TO DO</h2>
           <div className="task-section">
             
-          <Task task={task} handleClickTrash={handleClickTrash}/>
+          <Task task={task} handleClickTrash={handleClickTrash} handleCheck={handleCheck}/>
           
           </div>
         </div>

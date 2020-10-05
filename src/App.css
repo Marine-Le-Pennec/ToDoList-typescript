@@ -16,7 +16,6 @@
 }
 .task-container {
   width: 70%;
-  /* height: 200px; */
   border-radius: 20px;
   background-color: #cfeff9;
   display: flex;
@@ -76,9 +75,29 @@
 .trash-button {
   border-style: none;
   background-color: transparent;
+  
+}
+.task-line{
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  
+}
+.task-line span{ 
+  font-size: 27px;
+  margin-right: 3em;
+  margin-left: 3em;
+  flex:1;
 }
 
-.task-title {
-  font-size: 27px;
-  margin-right: 6em;
+
+input[type="checkbox"]{
+  width: 20px; 
+  height: 20px; 
+}
+
+.task-underline{
+  text-decoration: line-through;
 }
